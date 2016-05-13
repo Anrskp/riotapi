@@ -1,1 +1,45 @@
-ini
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> League Statistics </title>
+
+    <!-- TODO - Import scripts file -->    
+    
+    <!-- style.css -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> 
+    <!-- Angular -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <!-- Angular Routing --> 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
+    <!-- app.JS-->
+    <script src="app.js"></script>
+    <!-- jQuery if need be -->
+    <script type="text/javascript" src=""></script>
+</head>
+
+<body>
+
+    <div ng-app="myApp" ng-controller="mainController">
+
+        <div class="topMenu">
+
+            <!-- SEARCH FIELDS -->
+            <input type="text" id="userInput" placeholder="Enter a summoner's name">
+            <button ng-click="getSummonerInfo()"><span class="glyphicon glyphicon-search"></span></button>
+
+        </div>
+
+        <!-- VIEWS -->
+        <a href="#/championStats"> Champion Statistics </a>
+        <a href="#/eloStats"> Elo Statistics </a>
+        <a href="#/liveGame"> Live Game </a>
+
+        <div ng-view></div>
+
+    </div>
+
+</body>
+</html>
