@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -17,9 +17,8 @@
     <!-- app.js -->
     <script src="app.js"></script>
     <!-- jQuery if need be -->
-    <script type="text/javascript" src=""></script>
+    
 </head>
-
 <body>
 
     <div ng-app="myApp" ng-controller="mainController">
@@ -31,15 +30,12 @@
             <button ng-click="getSummonerInfo()"><span class="glyphicon glyphicon-search"></span></button>
 
         </div>
-
+        
         <!-- VIEWS -->
-        <a href="#/championStats"> Champion Statistics </a>
-        <a href="#/eloStats"> Elo Statistics </a>
-        <a href="#/liveGame"> Live Game </a>
-
         <div ng-view></div>
+        <div class="footer"></div>
 
     </div>
 
 </body>
-</html>
+</html> 

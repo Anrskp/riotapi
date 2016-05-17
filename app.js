@@ -3,8 +3,8 @@
 var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function ($routeProvider) {
-	
-	// todo html5 api history routing
+
+	// todo: html5 API history routing
 
 	// Routing
 	$routeProvider.
@@ -46,14 +46,13 @@ app.controller('mainController', function($scope, $http) {
 
 		$http.get(url).then(function (response) {
 			$scope.newSummoner = response.data[userInput];
-
+			getChampions();
 			console.log($scope.newSummoner);
-			$scope.getChampions();
 		});
 	};
 
-	// Get ten recent matches.
-	$scope.getChampions = function() {
+	// Get ten recent matches stats.
+	var getChampions = function() {
 		var url = baseUrl 
 				  + "/api/lol/euw/v1.3/game/by-summoner/"
 				  + $scope.newSummoner.id
@@ -61,9 +60,33 @@ app.controller('mainController', function($scope, $http) {
 				  + apiKey;
 
 		$http.get(url).then(function(response) {
-			var info = response;
-			console.log(info);
+			// todo: format data + error catch
+			var matchData = response.data.games;
+			location.href = '#/championStats'
+
+			$scope.matchRecords = [];
+			
+			for (var i = 0; i < matchData.length; i++) {	
+				if(matchData[i].stats.win === true) {
+					$scope.matchRecords.push('won')
+				} else {
+					$scope.matchRecords.push('lost')
+				}
+			} 
+			
+			console.log($scope.matchRecords);
 		})
 	}
+
+	// Get top played champions stats
+	var getChampionsStats = function() {
+
+	}
+
+	// CHAMPIONS STATS
+
+	// ELO STATS
+	
+	// LIVE STATS
 
 });
