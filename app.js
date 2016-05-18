@@ -73,7 +73,7 @@ app.controller('mainController', function($scope, $http) {
 					$scope.matchRecords.push('lost')
 				}
 			} 
-			
+			testchart(30,80);
 			console.log($scope.matchRecords);
 		})
 	}

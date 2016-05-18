@@ -6,6 +6,8 @@
 
     <!-- TODO - Import scripts file -->
 
+    <!-- charts.js -->
+    <script src="chartsmin.js"></script>
     <!-- style.css -->
     <link rel="stylesheet" type="text/css" href="style.css">
     <!-- Bootstrap -->
@@ -16,23 +18,24 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.js"></script>
     <!-- app.js -->
     <script src="app.js"></script>
-    <!-- jQuery if need be -->
-    
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <!-- test -->
+    <script src="testchart.js"></script>
+
 </head>
 <body>
-
     <div ng-app="myApp" ng-controller="mainController">
 
         <div class="topMenu">
-
             <!-- SEARCH FIELDS -->
             <input type="text" id="userInput" placeholder="Enter a summoner's name">
-            <button ng-click="getSummonerInfo()"><span class="glyphicon glyphicon-search"></span></button>
-
+            <button ng-click="getSummonerInfo();"><span class="glyphicon glyphicon-search"></span></button>
         </div>
-        
+
         <!-- VIEWS -->
         <div ng-view></div>
+
         <div class="footer"></div>
 
     </div>
