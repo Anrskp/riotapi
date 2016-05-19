@@ -35,7 +35,7 @@ app.controller('mainController', function($scope, $http) {
 	var baseUrl = 'https://euw.api.pvp.net',
 		apiKey = '?api_key=10505c29-a6ad-4506-9a94-59e6b010f5d8';
 		
-	// Get summoner info.
+	// Get summoner info. Initiate
 	$scope.getSummonerInfo = function() {	
 		// Searchfield input.
 		var userInput = document.getElementById("userInput").value,
@@ -73,6 +73,7 @@ app.controller('mainController', function($scope, $http) {
 					$scope.matchRecords.push('lost')
 				}
 			} 
+			// Draw chart.
 			testchart(30,80);
 			console.log($scope.matchRecords);
 		})

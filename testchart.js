@@ -8,12 +8,12 @@ var testchart = function(wins, losses) {
 			labels: ["won", "lost"],
 			datasets: [
 			{
-				label: "",
-				backgroundColor: "rgba(255,99,132,0.2)",
-				borderColor: "rgba(255,99,132,1)",
+				label: "amount",
+				backgroundColor: "rgba(36, 95, 146, 0.2)",
+				borderColor: "rgba(36, 95, 146, 0.8)",
 				borderWidth: 2,
-				hoverBackgroundColor: "rgba(255,99,132,0.4)",
-				hoverBorderColor: "rgba(255,99,132,1)",
+				hoverBackgroundColor: "rgba(36, 95, 146, 0.4)",
+				hoverBorderColor: "rgba(36, 95, 146, 1)",
 				data: [wins, lost],
 			}]
 		},
@@ -22,12 +22,14 @@ var testchart = function(wins, losses) {
 			scaleShowVerticalLines: false,
 			responsive: false,
 			maintainAspectRatio: false,
+			
 			animation: {
 				duration: 5000
 			},
 			legend: {
 				display: false,
 			},
+			
 			scales: {
 				xAxes: [{
 					gridLines: {
