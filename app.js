@@ -4,8 +4,6 @@ var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function ($routeProvider) {
 
-	// todo: html5 API history routing
-
 	// Routing
 	$routeProvider.
 	when('/', {
@@ -35,7 +33,11 @@ app.controller('mainController', function($scope, $http) {
 	var baseUrl = 'https://euw.api.pvp.net',
 		apiKey = '?api_key=10505c29-a6ad-4506-9a94-59e6b010f5d8';
 		
-	// Get summoner info. Initiate
+		$http.get("lolchamps.json").then(function(response) {
+			$scope.allchamps = response.data;
+		})
+
+	// Initiate - Get summoner info. 
 	$scope.getSummonerInfo = function() {	
 		// Searchfield input.
 		var userInput = document.getElementById("userInput").value,
@@ -46,13 +48,14 @@ app.controller('mainController', function($scope, $http) {
 
 		$http.get(url).then(function (response) {
 			$scope.newSummoner = response.data[userInput];
-			getChampions();
+			getRecentMatches();
+			getChampionsStats();
 			console.log($scope.newSummoner);
 		});
 	};
 
 	// Get ten recent matches stats.
-	var getChampions = function() {
+	var getRecentMatches = function() {
 		var url = baseUrl 
 				  + "/api/lol/euw/v1.3/game/by-summoner/"
 				  + $scope.newSummoner.id
@@ -73,21 +76,54 @@ app.controller('mainController', function($scope, $http) {
 					$scope.matchRecords.push('lost')
 				}
 			} 
-			// Draw chart.
-			testchart(30,80);
-			console.log($scope.matchRecords);
 		})
 	}
 
 	// Get top played champions stats
 	var getChampionsStats = function() {
+		var url = baseUrl
+				  + "/api/lol/euw/v1.3/stats/by-summoner/"
+				  + $scope.newSummoner.id
+				  + "/ranked"
+				  + apiKey;
 
+	    $http.get(url).then(function(response) {
+	    	var championsData = response.data.champions;
+	    	var championsAmount = championsData.length;
+	    	championsData.sort(function(a,b) { 
+	    		return b.stats.totalSessionsPlayed - a.stats.totalSessionsPlayed
+	    	});
+
+	    	$scope.allGames = championsData[0];
+	    	console.log(championsData);
+	    	getChampionById(championsData.slice(1,11));
+	    })
 	}
 
-	// CHAMPIONS STATS
+	// set chart for top played champs
+	var getChampionById = function(champions) {
+		$scope.mostPlayedChamps = [];
+		var championPool = champions;
+		
 
-	// ELO STATS
-	
-	// LIVE STATS
+		for (var i = 0; i < championPool.length; i++) {
+		var champInfo = {};
+
+			// Get champions name by id from local json.
+			for (var j = 0; j < $scope.allchamps.length; j++) {
+				if ($scope.allchamps[j].id === championPool[i].id) {	
+					champInfo.name = $scope.allchamps[j].name;
+				}
+			}
+		
+		champInfo.won = championPool[i].stats.totalSessionsWon;
+		champInfo.lost = championPool[i].stats.totalSessionsLost;
+		
+		$scope.mostPlayedChamps.push(champInfo)
+	}
+	//draw chart
+ 	testchart($scope.mostPlayedChamps);
+	console.log($scope.mostPlayedChamps);
+}
 
 });

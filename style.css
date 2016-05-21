@@ -1,26 +1,12 @@
-	/* 
-
-	todo: opdeling
-	-index
-	-views
-	-general
-
-	*/
-
 .topMenu {
 	
 	position: relative;
-	height: 280px;
-	background-image: url('http://i.imgur.com/M1tYdcG.png');
-	/*
-	background-color: black;
-	*/
+	width: 1279px;
+	height: 200px;
+	background-image: url('http://i.imgur.com/yRBMENG.png');
 	margin: 0 auto; 
-	/*
   border-bottom-left-radius: 2em;
   border-bottom-right-radius: 2em;
-	*/
-	border-bottom: solid;
 }
 
 .views {
@@ -35,7 +21,7 @@
 	padding-left: 40px; 
 	background-color: rgba(255, 255, 255, 0.75);
 	position: absolute;
-	top: 60%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border-radius: 20px;
@@ -57,6 +43,9 @@ input {
 	transform: translate(-50%);
 }
 
-body {
-	background-color: lightgrey;
+.navBtn {
+	background-color: white;
+  border-color: grey;
+	color: black; 
+	margin-top: 4px;
 }

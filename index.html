@@ -20,12 +20,14 @@
   <script src="app.js"></script>
   <!-- jQuery -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-  <!-- test -->
+  <!-- test chart -->
   <script src="testchart.js"></script>
+    <script src='require.js'></script>
+  <script src='lolchamps.json'></script>
 
 </head>
 <body>
-  <div ng-app="myApp" ng-controller="mainController">
+  <div ng-app="myApp" ng-controller="mainController" class="mainDiv">
 
     <div class="topMenu">
 
@@ -35,7 +37,6 @@
         <span ng-click="getSummonerInfo();" class="glyphicon glyphicon-search searchBtn"></span>
         <img src="http://www.diamondelo.com/wp-content/uploads/2014/09/Slider11.png" style="width: 100px; height: 100px; margin-top: 20px;"/>
       </div>
-
     </div>
 
     <!-- VIEWS -->
@@ -44,6 +45,5 @@
     <div class="footer"></div>
 
   </div>
-
 </body>
 </html> 

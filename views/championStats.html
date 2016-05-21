@@ -1,9 +1,9 @@
 <div>
 
 	<div class="btnGrp">
-		<a class="btn btn-info" style="background-color: white; border-color: grey; color: black; margin-top: 4px;" href="#/championStats" onclick="return testchart(30,80);"> Champion Statistics </a>
-		<a class="btn btn-info" style="background-color: white; border-color: grey; color: black; margin-top: 4px;" href="#/eloStats"> Elo Statistics </a>
-		<a class="btn btn-info" style="background-color: white; border-color: grey; color: black; margin-top: 4px;" href="#/liveGame"> Live Game </a>
+		<a class="btn btn-info navBtn" style="background-color: white; border-color: grey; color: black; margin-top: 4px;" ng-click="getSummonerInfo();"> Champion Statistics </a>
+		<a class="btn btn-info navBtn" style="background-color: white; border-color: grey; color: black; margin-top: 4px;" href="#/eloStats"> Elo Statistics </a>
+		<a class="btn btn-info navBtn" style="background-color: white; border-color: grey; color: black; margin-top: 4px;" href="#/liveGame"> Live Game </a>
 	</div>
 
 	<div style="padding-top: 70px;">
@@ -11,8 +11,12 @@
 
 		<p> Summoner name : {{newSummoner.name}} </p>
 		<p> Summoner level : {{newSummoner.summonerLevel}} </p>
-	
-		<canvas id="myChart" width="400" height="200"></canvas>
+		<p> Total games played : {{allGames.stats.totalSessionsPlayed}} </p> <!--todo wins losses -->
+
+		<br>
+
+		<p> Top 10 played champions </p> 
+		<canvas id="myChart" width="460" height="260"></canvas>
 	</div>
 
 </div>
