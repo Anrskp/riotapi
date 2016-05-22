@@ -33,9 +33,9 @@ app.controller('mainController', function($scope, $http) {
 	var baseUrl = 'https://euw.api.pvp.net',
 		apiKey = '?api_key=10505c29-a6ad-4506-9a94-59e6b010f5d8';
 		
-		$http.get("lolchamps.json").then(function(response) {
-			$scope.allchamps = response.data;
-		})
+	$http.get("lolchamps.json").then(function(response) {
+		$scope.allchamps = response.data;
+	})
 
 	// Initiate - Get summoner info. 
 	$scope.getSummonerInfo = function() {	
@@ -65,7 +65,6 @@ app.controller('mainController', function($scope, $http) {
 		$http.get(url).then(function(response) {
 			// todo: format data + error catch
 			var matchData = response.data.games;
-			location.href = '#/championStats'
 
 			$scope.matchRecords = [];
 			
@@ -75,8 +74,9 @@ app.controller('mainController', function($scope, $http) {
 				} else {
 					$scope.matchRecords.push('lost')
 				}
-			} 
+			} 	
 		})
+			location.href = '#/championStats'
 	}
 
 	// Get top played champions stats
@@ -89,7 +89,7 @@ app.controller('mainController', function($scope, $http) {
 
 	    $http.get(url).then(function(response) {
 	    	var championsData = response.data.champions;
-	    	var championsAmount = championsData.length;
+
 	    	championsData.sort(function(a,b) { 
 	    		return b.stats.totalSessionsPlayed - a.stats.totalSessionsPlayed
 	    	});
@@ -100,7 +100,7 @@ app.controller('mainController', function($scope, $http) {
 	    })
 	}
 
-	// set chart for top played champs
+	// get champion names and draw chart with win/loss
 	var getChampionById = function(champions) {
 		$scope.mostPlayedChamps = [];
 		var championPool = champions;
@@ -120,10 +120,17 @@ app.controller('mainController', function($scope, $http) {
 		champInfo.lost = championPool[i].stats.totalSessionsLost;
 		
 		$scope.mostPlayedChamps.push(champInfo)
-	}
-	//draw chart
- 	testchart($scope.mostPlayedChamps);
+		}
+
+	// draw chart
+ 	drawBarChart($scope.mostPlayedChamps);
 	console.log($scope.mostPlayedChamps);
-}
+	}
+
+	// draw elo chart 
+	$scope.drawEloChart = function() {
+		// todo : navigate
+		drawLineChart($scope.matchRecords);
+	}
 
 });
