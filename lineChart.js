@@ -6,37 +6,37 @@ var drawLineChart = function (games) {
 				canvas = document.getElementById('myChart2').getContext('2d'),
 				lineValue = 0;
 
-		console.log('linechart drawn');
-
 		// generate values for line chart.
-		for(var i = 0; i < recentGames.length; i++) {
-			if(recentGames[i] == "won") {
+		for (var i = 0; i < recentGames.length; i++) {
+			if (recentGames[i] == "won") {
 				lineValue++;
+			} else if (recentGames[i] == "") {
+					// fix incase function is called twice from same view.
 			} else {
 				lineValue--;
 			}
 
 			lineValues.push(lineValue);
 		}
+		
 
 		// setup starting points.
-		if(recentGames[0] != "") { 
+		if (recentGames[0] != "") { 
 			recentGames.unshift("");
+			lineValues.unshift(0);
 		}
-		lineValues.unshift(0);
-
+		
 		var data = {
 			labels : recentGames,
-			datasets : [
-			{
+			datasets : [{
+				borderColor: "#ACC26D",
 				backgroundColor: "rgba(0, 0, 0, 0)",
 				fillColor : "rgba(255,255,255,0.0)",
 				strokeColor : "#ACC26D",
 				pointColor : "#fff",
 				pointStrokeColor : "#9DB86D",
 				data : lineValues
-			}
-			]
+			}]
 		}
 
 		var option = { 
@@ -52,4 +52,6 @@ var drawLineChart = function (games) {
 		});
 
 	}, 200);
+	
+	console.log('line chart drawn!');
 }

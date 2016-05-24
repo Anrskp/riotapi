@@ -96,12 +96,12 @@ app.controller('mainController', function($scope, $http) {
 
 	    	$scope.allGames = championsData[0];
 	    	console.log(championsData);
-	    	getChampionById(championsData.slice(1,11));
+	    	drawChampChart(championsData.slice(1,11));
 	    })
 	}
 
 	// get champion names and draw chart with win/loss
-	var getChampionById = function(champions) {
+	var drawChampChart = function(champions) {
 		$scope.mostPlayedChamps = [];
 		var championPool = champions;
 		
@@ -127,10 +127,14 @@ app.controller('mainController', function($scope, $http) {
 	console.log($scope.mostPlayedChamps);
 	}
 
-	// draw elo chart 
+	// draw elo charts
 	$scope.drawEloChart = function() {
 		// todo : navigate
+		// draw total w/l chart + last 10 games w/l chart.
 		drawLineChart($scope.matchRecords);
+		console.log($scope.allGames);
+		drawPieChart($scope.allGames);
 	}
+
 
 });

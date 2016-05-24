@@ -1,27 +1,31 @@
 var drawBarChart = function(champs) {
+	// short delay to ensure canvas has been genereated in the dom.
 	setTimeout(function() {
+		// todo:  clear before redrawing.
 
 		var canvas = document.getElementById('myChart'),
-		topChamps = champs;
+				topChamps = champs,
+				losses = [],
+		  	wins = [],
+				names = [];
 
-		// easier labels and data insert.
-		// clear before redrawing.
+		for (var i = 0; i < topChamps.length; i++) {
+			names.push(topChamps[i].name);
+			losses.push(topChamps[i].lost);
+			wins.push(topChamps[i].won);
+		}
+
 
 		var data = {
-			labels: [(topChamps[0].name), topChamps[1].name, topChamps[2].name,
-			topChamps[3].name, topChamps[4].name, topChamps[5].name,
-			topChamps[6].name, topChamps[7].name, topChamps[8].name, topChamps[9].name],
-			datasets: [
-			{
+			labels: names,
+			datasets: [{
 				label: "wins",
 				backgroundColor: "rgba(7, 210, 0, 0.2)", // GREEN
 				borderColor: "rgba(7, 210, 0, 0.8)",
 				borderWidth: 2,
 				hoverBackgroundColor: "rgba(7, 210, 0, 0.4)", 
 				hoverBorderColor: "rgba(7, 210, 0, 1)",
-				data: [topChamps[0].won, topChamps[1].won, topChamps[2].won,
-				topChamps[3].won, topChamps[4].won, topChamps[5].won,
-				topChamps[6].won, topChamps[7].won, topChamps[8].won, topChamps[9].won],
+				data: wins,
 			},
 			{
 				label: "losses",
@@ -30,8 +34,7 @@ var drawBarChart = function(champs) {
 				borderWidth: 2,
 				hoverBackgroundColor: "rgba(238, 11, 11, 0.4)",
 				hoverBorderColor: "rgba(238, 11, 11, 1)",
-				data: [topChamps[0].lost, topChamps[1].lost, topChamps[2].lost, topChamps[3].lost, topChamps[4].lost, topChamps[5].lost,
-				topChamps[6].lost, topChamps[7].lost, topChamps[8].lost, topChamps[9].lost],
+				data: losses,
 			}],
 
 		};
@@ -72,5 +75,5 @@ var drawBarChart = function(champs) {
 
 	}, 200);
 
-	console.log('chart drawn!');
+	console.log('bar chart drawn!');
 }
