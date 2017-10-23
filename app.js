@@ -31,7 +31,7 @@ app.controller('mainController', function($scope, $http) {
 
 	// Fields
 	var baseUrl = 'https://euw.api.pvp.net',
-		apiKey = '?api_key=10505c29-a6ad-4506-9a94-59e6b010f5d8';
+		apiKey = 'key';
 		
 	$http.get("lolchamps.json").then(function(response) {
 		$scope.allchamps = response.data;
